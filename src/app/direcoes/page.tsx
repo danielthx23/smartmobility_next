@@ -1,5 +1,4 @@
 "use client";
-import { calculateRoute } from "@/utils/maps";
 import Link from "next/link";
 import { useState } from "react";
 import { FaArrowRight, FaCircle } from "react-icons/fa";
@@ -74,7 +73,7 @@ const Page = () => {
           </aside>
         </div>
 
-        {/* Map Section */}
+        {/* seção do mapa */}
         <div className="m-1 bg-gray-200 w-full h-full">
           <iframe
             id="mapIframe"

@@ -20,10 +20,10 @@ const metroLines = [
   { href: "/linhas/prata", color: "bg-gray-400", number: "15", name: "Prata" },
 ];
 
-const Page = () => {
-  const [linhaAtual, setLinhaAtual] = useState<string>(); // Linha inicial, por padrão "azul"
+const MapaMetro = () => {
+  const [linhaAtual, setLinhaAtual] = useState<string>();
   const [toggleMapa, setToggleMapa] = useState<boolean>(false);
-  const [searchQuery, setSearchQuery] = useState<string>(""); // Estado para o campo de busca
+  const [searchQuery, setSearchQuery] = useState<string>(""); 
   
   // Função para alterar a linha atual
   const handleLinhaSelect = (linha: string) => {
@@ -141,4 +141,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default MapaMetro;

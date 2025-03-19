@@ -1,4 +1,4 @@
-const Page = () => {
+const Localizacao = () => {
     return (
         <main className="bg-[#5BC7CA] w-full flex flex-col items-center justify-center p-12 md:p-16 gap-8">
             <h2 className="text-2xl font-bold text-black">Essa é a sua localização atual</h2>
@@ -16,4 +16,4 @@ const Page = () => {
     )
 }
 
-export default Page;
+export default Localizacao;
