@@ -2,7 +2,7 @@ import { FaCopyright, FaFacebook, FaInstagram, FaXTwitter } from "react-icons/fa
 
 const Footer = () => {
   return (
-    <footer className="flex justify-end w-full bg-[#3E5179] py-8 sm:text-sm text-white">
+    <footer className="flex mb-24 md:mb-0 justify-end w-full bg-[#3E5179] py-8 sm:text-sm text-white">
     <div className="flex flex-col gap-4 px-6">
     <div className="flex text-white gap-4 items-center font-lilita text-xl">
           <p className="flex items-center">

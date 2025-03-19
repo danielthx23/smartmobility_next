@@ -1,0 +1,3 @@
+interface MapaMetro {
+    listaEstacoes: Estacao[];
+}

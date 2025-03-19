@@ -1,70 +1,95 @@
+"use client";
+import { calculateRoute } from "@/utils/maps";
+import Link from "next/link";
+import { useState } from "react";
+import { FaArrowRight, FaCircle } from "react-icons/fa";
+
 const Page = () => {
-    return (
-        <main>
-            <div className="flex bg-gray-200 flex-col items-center md:flex-row">
-                {/* Sidebar */}
-                <div className="bg-white m-1 sm:m-0">
-                    <aside className="w-24 md:w-full">
-                        {/* Navigation Links */}
-                        <div className="flex items-end h-8 px-2 w-full bg-neutral-800 text-white">
-                            <a href="./direcoes.html" className="w-full text-white no-underline">
-                                <h3 className="w-full sm:text-md text-center">Direções</h3>
-                            </a>
-                            <a href="./direcoes_linhas.html" className="w-full text-white no-underline">
-                                <h3 className="w-full sm:text-md text-center">Linhas</h3>
-                            </a>
-                        </div>
+  const [startLocation, setStartLocation] = useState("");
+  const [endLocation, setEndLocation] = useState("");
 
-                        {/* Route Form */}
-                        <form id="routeForm" className="flex gap-2 p-3">
-                            <div className="flex flex-col gap-2 items-center justify-center">
-                                <i className="fa-solid fa-circle"></i>
-                                <span className="absolute border-dotted border-b-2 w-1 h-full"></span>
-                                <i className="fa-solid fa-circle text-red-500"></i>
-                            </div>
-                            <div className="flex flex-col gap-2 w-full">
-                                <label className="flex items-center gap-2">
-                                    <input
-                                        type="text"
-                                        id="startLocation"
-                                        placeholder="Escolha seu local de partida"
-                                        className="sm:text-sm w-full py-2 border-none rounded border-b"
-                                        required
-                                    />
-                                </label>
-                                <label className="flex items-center gap-2">
-                                    <input
-                                        type="text"
-                                        id="endLocation"
-                                        placeholder="Escolha o seu destino"
-                                        className="sm:text-sm w-full py-2 border-none rounded border-b"
-                                        required
-                                    />
-                                </label>
-                            </div>
-                        </form>
-                        <p className="text-center px-4 mb-4 sm:text-md">
-                            Adicione seu local de origem e seu destino para obter uma lista das melhores rotas.
-                        </p>
-                    </aside>
-                </div>
+  // Função para calcular a rota (no futuro, implementaremos a API)
+  const handleRouteCalculation = async (e: { preventDefault: () => void; }) => {
+    e.preventDefault();  // Previne o comportamento padrão do formulário
 
-                {/* Map Section */}
-                <div className="m-1 bg-gray-200 w-full">
-                    <iframe
-                        id="mapIframe"
-                        width="100%"
-                        height="700"
-                        style={{ border: 0 }}
-                        loading="lazy"
-                        allowFullScreen
-                        referrerPolicy="no-referrer-when-downgrade"
-                        src="https://www.google.com/maps/embed/v1/view?key=AIzaSyC5QsQ9OvxX1V-V0sKoGMmBCDgBbJ1FO44&center=-23.55052,-46.633308&zoom=12"
-                    />
-                </div>
+    // Exibe um alerta com os locais de origem e destino
+    alert(`Início: ${startLocation}\nDestino: ${endLocation}\nA API do Maps será implementada para calcular a rota.`);
+  };
+
+  return (
+    <main className="mt-8">
+      <div className="flex bg-gray-200 flex-col items-center lg:flex-row p-4 lg:p-8 gap-8 h-[900px]">
+        {/* Sidebar */}
+        <div className="bg-white h-full">
+          <aside className="w-full lg:w-[30rem]">
+            {/* Links de navegação */}
+            <div className="flex items-end h-20 px-8 w-full bg-neutral-500 text-white">
+              <Link href="/direcoes" className="w-full text-white no-underline">
+                <h3 className="w-full text-md md:text-lg font-bold">Direções</h3>
+              </Link>
+              <Link href="/mapa_metro" className="w-full text-white no-underline">
+                <h3 className="w-full text-md md:text-lg font-bold">Linhas</h3>
+              </Link>
             </div>
-        </main>
-    );
+
+            {/* Form de rota */}
+            <form onSubmit={handleRouteCalculation} id="routeForm" className="flex gap-6 p-8 h-full">
+              <div className="flex flex-col gap-10 items-center justify-center">
+                <FaCircle size={20} />
+                <span className="absolute border-l border-1 border-dotted h-10"></span>
+                <FaCircle className="text-red-600" size={20} />
+              </div>
+              <div className="flex flex-col gap-2 w-full">
+                <label className="flex items-center gap-2">
+                  <input
+                    type="text"
+                    placeholder="Escolha seu local de partida"
+                    className="text-sm md:text-lg w-full py-2 outline-none border-black border-b"
+                    value={startLocation}
+                    onChange={(e) => setStartLocation(e.target.value)}
+                    required
+                  />
+                </label>
+                <label className="flex items-center gap-2">
+                  <input
+                    type="text"
+                    placeholder="Escolha o seu destino"
+                    className="text-sm md:text-lg w-full py-2 outline-none border-black border-b"
+                    value={endLocation}
+                    onChange={(e) => setEndLocation(e.target.value)}
+                    required
+                  />
+                </label>
+              </div>
+              <button
+                type="submit"
+                className="mt-4 p-2 bg-[#5BC7CA] text-white rounded-lg"
+              >
+                Calcular Rota
+              </button>
+            </form>
+            <p className="text-center px-8 mb-4 text-md md:text-lg">
+              Adicione seu local de origem e seu destino para obter uma lista das melhores rotas.
+            </p>
+          </aside>
+        </div>
+
+        {/* Map Section */}
+        <div className="m-1 bg-gray-200 w-full h-full">
+          <iframe
+            id="mapIframe"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed/v1/view?key=AIzaSyC5QsQ9OvxX1V-V0sKoGMmBCDgBbJ1FO44&center=-23.55052,-46.633308&zoom=12"
+          />
+        </div>
+      </div>
+    </main>
+  );
 };
 
 export default Page;
