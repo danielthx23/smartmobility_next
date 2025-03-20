@@ -6,8 +6,6 @@
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-oleo: var(--font-oleo-script);  /* Link your font */
   --font-lilita: var(--font-lilita-one);  /* Link your other font */
 }
